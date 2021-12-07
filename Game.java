@@ -540,6 +540,9 @@ public class Game
 		String input = "";
 		while(true)
 		{
+			// round player and opponent health
+			playerHealth = healthRound(playerHealth);
+			opponentHealth = healthRound(opponentHealth);
 			
 			// if player health is less than 1
 			if(playerHealth < 1)
@@ -1711,5 +1714,30 @@ public class Game
 	{
 		player.saveGame();
 		System.exit(0);
+	}
+	
+	// rounds double to nearest second decimal place
+	public double healthRound(double health)
+	{
+		// get decimal value on its own
+		double healthRoundDecimal = health%1;
+		
+		// get integer value on its own
+		double healthRoundInteger = health - healthRoundDecimal;
+		
+		// multiply decimal value by 100
+		healthRoundDecimal = healthRoundDecimal*100;
+		
+		// round decimal value to nearest integer value
+		healthRoundDecimal = Math.round(healthRoundDecimal);
+		
+		// divide decimal value by 100
+		healthRoundDecimal = healthRoundDecimal/100;
+		
+		// add decimal value to integer value
+		double healthRound = healthRoundInteger + healthRoundDecimal;
+		
+		// return added values
+		return healthRound;
 	}
 }
